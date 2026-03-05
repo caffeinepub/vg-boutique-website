@@ -1,33 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle2, MapPin, MessageCircle, Phone } from "lucide-react";
-import { useState } from "react";
+import { MapPin, MessageCircle, Phone } from "lucide-react";
 
 interface ContactSectionProps {
   visible: boolean;
 }
 
 export function ContactSection({ visible }: ContactSectionProps) {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    requirement: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    // Simulate form submission
-    setTimeout(() => {
-      setIsLoading(false);
-      setSubmitted(true);
-    }, 900);
-  };
-
   return (
     <section
       id="contact"
@@ -50,124 +27,8 @@ export function ContactSection({ visible }: ContactSectionProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-          {/* Left – Contact Form */}
-          <div className="bg-white rounded-3xl p-7 sm:p-10 shadow-boutique">
-            <h3 className="font-display text-xl font-semibold text-[oklch(0.22_0.01_30)] mb-6">
-              Send a Message
-            </h3>
-
-            {submitted ? (
-              <div
-                data-ocid="contact.success_state"
-                className="flex flex-col items-center justify-center py-12 text-center"
-              >
-                <div className="w-16 h-16 rounded-full bg-[oklch(0.82_0.06_10/0.20)] flex items-center justify-center mb-4">
-                  <CheckCircle2 className="w-8 h-8 text-[oklch(0.62_0.12_10)]" />
-                </div>
-                <h4 className="font-display text-xl font-semibold text-[oklch(0.22_0.01_30)] mb-2">
-                  Thank You!
-                </h4>
-                <p className="font-body text-sm text-[oklch(0.50_0.02_30)] max-w-xs">
-                  Thank you! We'll get back to you soon. Vrinda G will contact
-                  you shortly to discuss your design requirements.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({ name: "", phone: "", requirement: "" });
-                  }}
-                  className="mt-6 font-body text-sm text-[oklch(0.62_0.12_10)] hover:underline"
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="space-y-2">
-                  <Label
-                    htmlFor="contact-name"
-                    className="font-body text-sm font-medium text-[oklch(0.35_0.02_30)]"
-                  >
-                    Your Name{" "}
-                    <span className="text-[oklch(0.62_0.12_10)]">*</span>
-                  </Label>
-                  <Input
-                    id="contact-name"
-                    data-ocid="contact.input"
-                    type="text"
-                    placeholder="Enter your full name"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, name: e.target.value }))
-                    }
-                    required
-                    className="font-body text-sm border-[oklch(0.88_0.04_20)] focus-visible:ring-[oklch(0.62_0.12_10)] placeholder:text-[oklch(0.65_0.02_30)]"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label
-                    htmlFor="contact-phone"
-                    className="font-body text-sm font-medium text-[oklch(0.35_0.02_30)]"
-                  >
-                    Phone Number{" "}
-                    <span className="text-[oklch(0.62_0.12_10)]">*</span>
-                  </Label>
-                  <Input
-                    id="contact-phone"
-                    data-ocid="contact.phone_input"
-                    type="tel"
-                    placeholder="+91 XXXXX XXXXX"
-                    value={formData.phone}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        phone: e.target.value,
-                      }))
-                    }
-                    required
-                    className="font-body text-sm border-[oklch(0.88_0.04_20)] focus-visible:ring-[oklch(0.62_0.12_10)] placeholder:text-[oklch(0.65_0.02_30)]"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label
-                    htmlFor="contact-requirement"
-                    className="font-body text-sm font-medium text-[oklch(0.35_0.02_30)]"
-                  >
-                    Design Requirement
-                  </Label>
-                  <Textarea
-                    id="contact-requirement"
-                    data-ocid="contact.textarea"
-                    rows={4}
-                    placeholder="Tell us about the outfit you have in mind – style, occasion, fabric preferences..."
-                    value={formData.requirement}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        requirement: e.target.value,
-                      }))
-                    }
-                    className="font-body text-sm border-[oklch(0.88_0.04_20)] focus-visible:ring-[oklch(0.62_0.12_10)] placeholder:text-[oklch(0.65_0.02_30)] resize-none"
-                  />
-                </div>
-
-                <Button
-                  data-ocid="contact.submit_button"
-                  type="submit"
-                  disabled={isLoading}
-                  className="w-full py-3.5 rounded-full bg-[oklch(0.62_0.12_10)] hover:bg-[oklch(0.55_0.14_10)] text-white font-body font-semibold text-sm transition-all duration-200 hover:shadow-card-hover disabled:opacity-60"
-                >
-                  {isLoading ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
-            )}
-          </div>
-
-          {/* Right – Contact Info */}
+        <div className="max-w-xl mx-auto">
+          {/* Contact Info */}
           <div className="space-y-6">
             {/* WhatsApp CTA */}
             <a

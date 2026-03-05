@@ -1,4 +1,4 @@
-import { Heart, MapPin, Phone, Scissors } from "lucide-react";
+import { MapPin, Phone, Scissors } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -107,19 +107,6 @@ export function Footer() {
           <p className="font-body text-xs text-white/50 text-center sm:text-left">
             © {currentYear} VG Boutique. All rights reserved. | Custom Tailoring
             in Narayangaon, Pune – 410504
-          </p>
-          <p className="font-body text-xs text-white/40">
-            Built with{" "}
-            <Heart className="inline w-3 h-3 text-[oklch(0.82_0.06_10)]" />{" "}
-            using{" "}
-            <a
-              href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white/70 transition-colors duration-200"
-            >
-              caffeine.ai
-            </a>
           </p>
         </div>
       </div>
